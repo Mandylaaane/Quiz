@@ -12,6 +12,7 @@
   --nextQuest-btn-background: #8185C0;
   --nextQuest-font-color: #3E3F4D; 
   --btn-on-hover: #B1B5F3;
+  --btn-on-hover-dark: #2F2F3B;
   --transition: all 300ms ease-in-out;
 }
 
@@ -26,52 +27,24 @@ body {
     color: white;
 }
 
+/*_____________________________________________QUIZ BOX:  */
+
 #quizBox {
   background-color: var(--quizBox-background-color);
   padding: 1.5rem 4rem 3rem 4rem;
   width: 450px;
-  height: 550px;
+  height: 600px;
   border-top-left-radius: 1.5rem;
   border-radius: 1.5rem;
   position: relative;
 }
 
-/*___________________________________QUIZ BOX: PLAY */
 #quizTitle {
   text-align: center;
   font-size: 2rem;
 }
 
-/* .quizStartScreen {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 12rem;
-}
-
-#btnPlay {
-  width: 10rem;
-  height: 2.4rem;
-  background-color: var(--nextQuest-btn-background);
-  font-family: "Oswald", serif;
-  font-size: 1.4rem;
-  border: none;
-  border-radius: 0.4rem;
-  color: var(--nextQuest-font-color);
-  transition: var(--transition);
-}
-
-#btnPlay:hover {
-  background-color: var(--btn-on-hover);
-  color: var(--nextQuest-font-color);
-} 
-
-#btnPlay:active {
-  transform: scale(0.97);
-} */
-
-
-/*___________________________________QUIZ BOX: QUESTIONS */
+/*_______________________________________________QUESTIONS: */
 
 .questionScreen {
   display: flex;
@@ -81,7 +54,8 @@ body {
 }
 
 #question {
-  margin-top: 6rem;
+  text-align: center;
+  margin-top: 5rem;
   font-size: 1.1rem;
 }
 
@@ -90,22 +64,21 @@ body {
 }
 
 
-
-/*___________________________________QUIZ BOX: ANSWERS */
+/*________________________________________________ANSWERS: */
 .quizAnswers {
  list-style-type: none;
  margin: 1rem 0;
 }
 
 .quizAnswers li {
-  margin: .7rem 0;
+  margin: .5rem 0;
   padding: .4rem 1.2rem;
   cursor: pointer;
   border: none;
   border-radius: 0.4rem;
   background-color: var(--nextQuest-btn-background);
   color: var(--nextQuest-font-color); 
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   transition: var(--transition);
 }
 
@@ -117,28 +90,101 @@ body {
 .quizAnswers li:active {
   transform: scale(0.97);
 }
-/* SELECTED BTN STYLING */
+
+/* ______________________________________________RESULT MESSAGE: */
+
+#result {
+  text-align: center;
+  margin-bottom: .8rem;
+}
+
+.correct-answer {
+  background-color: #72e772; 
+}
+
+.incorrect-answer {
+  background-color: #f9657b; 
+}
+
+/* ___________________________________________CHECK/NEXT BUTTONS: */
+
 .selected {
   background-color: var(--btn-on-hover)!important;
   color: var(--nextQuest-font-color)!important;
 }
 
-#btnNextQuest {
+#btnCheckAnswer {
+  margin: 1rem 5rem .5rem 5rem;
+  padding: .4rem 1.2rem;
   width: 10rem;
   height: 2.4rem;
-  background-color: var(--nextQuest-btn-background);
+  background-color: var(--nextQuest-font-color);
   font-family: "Oswald", serif;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   border: none;
   border-radius: 0.4rem;
-  color: var(--nextQuest-font-color);
+  color: var(--nextQuest-btn-background);
   transition: var(--transition);
 }
 
-/*___________________________________QUIZ BOX: RESULTS */
+#btnCheckAnswer:hover {
+  background-color: var(--btn-on-hover-dark);
+  color: var(--nextQuest-btn-background);
+}
+
+#btnNextQuest {
+  margin: .1rem 5rem;
+  padding: .4rem 1.2rem;
+  width: 10rem;
+  height: 2.4rem;
+  background-color: var(--nextQuest-font-color);
+  font-family: "Oswald", serif;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 0.4rem;
+  color: var(--nextQuest-btn-background);
+  transition: var(--transition);
+}
+
+#btnNextQuest:hover {
+  background-color: var(--btn-on-hover-dark);
+  color: var(--nextQuest-btn-background);
+}
+
+/*_____________________________________________________SCORE: */
+
+#scoreScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+}
+
+#yourScore {
+  margin: 10rem 6rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+/*___________________________________________PLAY AGAIN BUTTON: */
+
+#btnPlayAgain {
+  margin: .1rem 5rem;
+  padding: .4rem 1.2rem;
+  width: 10rem;
+  height: 2.4rem;
+  background-color: var(--nextQuest-font-color);
+  font-family: "Oswald", serif;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 0.4rem;
+  color: var(--nextQuest-btn-background);
+  transition: var(--transition);
+}
 
 
+#btnPlayAgain:hover {
+  background-color: var(--btn-on-hover-dark);
+  color: var(--nextQuest-btn-background);
+}
 
-
-
-/* @media(max-width: ) */

@@ -15,11 +15,7 @@
 <body>
     <div id="quizBox">
         <h1 id="quizTitle">MUSIC QUIZ</h1>
-        <!-- <div class="quizStartScreen">
-            <button id="btnPlay" class="hide">PLAY!</button>
-        </div> -->
-    
-        <div class="questionScreen" class="hide">
+        <div class="questionScreen">
             <h2 class="quizQuestions" id="question"><!-- Questions goes here--><h2> 
             <ul class="quizAnswers">
                 <!-- <li>Answer 1</li>
@@ -27,15 +23,19 @@
                 <li>Answer 3</li>
                 <li>Answer 4</li> -->
             </ul>
-            <button id="btnNextQuest" class="hide">NEXT QUESTION</button>
+            <div id="result">
+                <!-- display result -->
+            </div>
+            <button id="btnCheckAnswer">CHECK ANSWER</button>
+            <button id="btnNextQuest">NEXT QUESTION</button>
+        </div>
+        <div id="scoreScreen" style="display: none;">
+            <p id="yourScore">SCORE: <span id="scoreValue">0</span>/10</p>
+            <button id="btnPlayAgain">PLAY AGAIN?</button>
         </div>
     </div>
 
-    <!-- <div id="resultScreen" class="hide">
-        <p>Result Message</p>
-        <p>RESULT: <span id="result"></span></p>
-        <button id="btnRestart">PLAY AGAIN?</button>
-    </div>
+    
 
 
 
