@@ -25,17 +25,31 @@ document.addEventListener('DOMContentLoaded', () => {
     eventListeners();
 });
 
-// LOAD Q&A FROM API
+// CONNECT API 
 async function loadQuestion(){
-    const APIUrl = 'https://opentdb.com/api.php?amount=10&category=12&difficulty=easy&type=multiple';
-    const result = await fetch(`${APIUrl}`);
-    const data = await result.json();
-    questions = data.results;
-    showQuestion(questions[currentQuestion]);
+    try {
+      const APIUrl = 'https://opentdb.com/api.php?amount=10&category=12&difficulty=easy&type=multiple';
+      const result = await fetch(`${APIUrl}`);
+      if (!result.ok) {
+        throw new Error('Failed to load questions');
+      }
+      const data = await result.json();
+      if (!data.results || data.results.length === 0) {
+        throw new Error('No questions received from API');
+      }
+      questions = data.results;
+      showQuestion(questions[currentQuestion]);
+    } catch (error) {
+        handleError(error);
+    }
 }
 
-// DISPLAY QUESTION, ANSWERS & CORRECTION
+// DISPLAY QUESTION & ANSWERS 
 function showQuestion(data){
+    try {
+        if (!data || !data.question || !data.correct_answer || !data.incorrect_answers) {
+            throw new Error('Invalid question data');
+    }
     correctAnswer = data.correct_answer;
     let incorrectAnswer = data.incorrect_answers;
     let answerList = incorrectAnswer;
@@ -50,6 +64,20 @@ function showQuestion(data){
     `;
 
     selectAnswer();
+  } catch (error) {
+    handleError(error);
+  }
+}
+
+// ERROR HANDLER 
+
+function handleError(error){
+    console.error('Error occurred:', error.message);
+    question.innerHTML = 'Error loading question, please try again.';
+    answers.innerHTML = '';
+    checkBtn.style.display = 'none';
+    nextBtn.style.display = 'none';
+    playAgainBtn.style.display = 'inline-block';
 }
 
 // SELECT ANSWER 
@@ -80,7 +108,7 @@ function checkAnswer() {
             result.textContent = "Wrong!";
             result.style.color = "#f9657b";
             selectedAnswer.classList.add('incorrect-answer');
-            // Highlight the correct answer
+            
             answers.querySelectorAll('li').forEach((li) => {
                 if (li.querySelector('span').textContent.trim() === correctAnswer) {
                     li.classList.add('correct-answer');
@@ -101,6 +129,8 @@ function checkAnswer() {
     
 }
 
+// DISPLAY FINAL SCORE
+
 function showFinalScore(){
     question.style.display = 'none';
     answers.style.display = 'none';
@@ -114,8 +144,9 @@ function showFinalScore(){
     scoreDiv.style.display = 'block';
     
     playAgainBtn.style.display = 'inline-block';
-
 }
+
+// LOAD NEXT QUESTION
 
 function loadNextQuestion(){
     if (currentQuestion < totalQuestions) {
@@ -130,6 +161,8 @@ function loadNextQuestion(){
         showFinalScore();
     }
 }
+
+// PLAY AGAIN / RESTART GAME
 
 function playAgain() {
     currentQuestion = 0;
