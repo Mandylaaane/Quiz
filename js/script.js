@@ -62,6 +62,7 @@ function showQuestion(data){
         <li> ${index + 1}. <span> ${option} </span> </li>
         `).join('')} 
     `;
+    nextBtn.style.display = "none";
 
     selectAnswer();
   } catch (error) {
@@ -70,7 +71,6 @@ function showQuestion(data){
 }
 
 // ERROR HANDLER 
-
 function handleError(error){
     console.error('Error occurred:', error.message);
     question.innerHTML = 'Error loading question, please try again.';
@@ -130,7 +130,6 @@ function checkAnswer() {
 }
 
 // DISPLAY FINAL SCORE
-
 function showFinalScore(){
     question.style.display = 'none';
     answers.style.display = 'none';
@@ -147,7 +146,6 @@ function showFinalScore(){
 }
 
 // LOAD NEXT QUESTION
-
 function loadNextQuestion(){
     if (currentQuestion < totalQuestions) {
       result.textContent = "";
@@ -163,7 +161,6 @@ function loadNextQuestion(){
 }
 
 // PLAY AGAIN / RESTART GAME
-
 function playAgain() {
     currentQuestion = 0;
     score = 0;
