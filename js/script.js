@@ -197,6 +197,8 @@ function playAgain() {
     (element) => (element.style.display = "block")
   );
   document.getElementById("scoreScreen").style.display = "none";
+
+  // remove the selected class from the answer on restart
   answers.querySelector(".selected").classList.remove("selected");
 
   loadQuestions();
