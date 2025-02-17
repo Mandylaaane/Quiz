@@ -62,11 +62,15 @@ function showQuestion(data) {
     let incorrectAnswer = data.incorrect_answers;
     let answerList = incorrectAnswer;
     // CORRECT ANSWER PLACED RANDOMLY
-    answerList.splice(
-      Math.floor(Math.random() * (incorrectAnswer.length + 1)),
-      0,
-      correctAnswer
-    );
+
+    // fix the bug where the correct answer is added twice
+    if (!answerList.includes(correctAnswer)) {
+      answerList.splice(
+        Math.floor(Math.random() * (incorrectAnswer.length + 1)),
+        0,
+        correctAnswer
+      );
+    }
 
     // this can be simplified by using textContent and `data.question` instead of ${data.question}
     question.textContent = data.question;
@@ -181,6 +185,8 @@ function loadNextQuestion() {
 
 // PLAY AGAIN / RESTART GAME
 function playAgain() {
+  // a dirty way of restarting the game, to avoid the current bug of the answers not being displayed properly
+  // window.location.reload();
   currentQuestion = 0;
   score = 0;
   result.textContent = "";
@@ -191,6 +197,7 @@ function playAgain() {
     (element) => (element.style.display = "block")
   );
   document.getElementById("scoreScreen").style.display = "none";
+  answers.querySelector(".selected").classList.remove("selected");
 
   loadQuestions();
 }
